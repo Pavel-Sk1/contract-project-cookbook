@@ -6,7 +6,7 @@ const mockRecipes = [
   {
     id: "1",
     title: "Вкусный Куриный Суп",
-    img_url: "https://via.placeholder.com/300x200.png?text=Куриный+Суп",
+    img_url: "https://art-lunch.ru/content/uploads/2014/02/chicken-soup-001.jpg",
     quantity_ingredient: 4,
     cooking_time: 60, // Время в минутах
   },
