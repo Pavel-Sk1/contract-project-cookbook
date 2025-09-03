@@ -6,6 +6,7 @@ module.exports = {
   async list(req, res) {
     try {
       const favorites = await Favorite.findAll({
+        include: [{ model: Recipe, attributes: ['id', 'title', 'img_url'] }],
         order: [['createdAt', 'DESC']],
       });
       return res
@@ -31,6 +32,7 @@ module.exports = {
 
       const favorites = await Favorite.findAll({
         where: { userId },
+        include: [{ model: Recipe, attributes: ['id', 'title', 'img_url'] }],
         order: [['createdAt', 'DESC']],
       });
       return res
@@ -54,6 +56,9 @@ module.exports = {
       }
       
       const favorite = await Favorite.create({ userId, recipeId });
+      const favoriteWithRecipe = await Favorite.findByPk(favorite.id, {
+        include: [{ model: Recipe, attributes: ['id', 'title', 'img_url'] }],
+      });
       return res
         .status(201)
         .json(formatResponse(201, 'Рецепт добавлен в избранное', favorite, null));
@@ -69,18 +74,16 @@ module.exports = {
     }
   },
 
-  async remove(req, res) { // Исправлено: было removeEventListener
+  async remove(req, res) { 
     try {
-      const { userId, recipeId } = req.body; // Исправлено: было req.borderStyle
-      
+      const { userId, recipeId } = req.body; 
       if (!userId || !recipeId) {
         return res
           .status(400)
           .json(formatResponse(400, 'userId и recipeId обязательны', null));
       }
 
-      const deleted = await Favorite.destroy({ where: { userId, recipeId } }); // Исправлено: было delete (зарезервированное слово)
-
+      const deleted = await Favorite.destroy({ where: { userId, recipeId } }); 
       if (!deleted) {
         return res
           .status(404)
@@ -108,7 +111,10 @@ module.exports = {
           .json(formatResponse(400, 'userId и recipeId обязательны', null));
       }
 
-      const exists = await Favorite.findOne({ where: { userId, recipeId } });
+      const exists = await Favorite.findOne({
+        where: { userId, recipeId },
+        include: [{ model: Recipe, attributes: ['id', 'title', 'img_url'] }],
+      });
 
       return res
         .status(200)

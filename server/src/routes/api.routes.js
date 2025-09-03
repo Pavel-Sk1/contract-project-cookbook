@@ -2,9 +2,11 @@ const router = require('express').Router();
 const tasksRoutes = require('./tasks.routes');
 const formatResponse = require('../utils/formatResponse');
 const authRoutes = require('./auth.routes');
+const favoritesRoutes = require('./favorites.routes');
 
 router.use('/tasks', tasksRoutes);
 router.use('/auth', authRoutes);
+router.use('/favorites', favoritesRoutes);
 
 router.use((req, res) => {
   res
