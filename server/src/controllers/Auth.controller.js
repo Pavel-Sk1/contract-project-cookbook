@@ -1,10 +1,10 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const UserService = require('../services/User.service');
-const { User } = require('../db/models');
-const formatResponse = require('../utils/formatResponse');
-const generateJWTTokens = require('../utils/generateJWTTokens');
-const cookieConfig = require('../config/cookieConfig');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const UserService = require("../services/User.service");
+const { User } = require("../db/models");
+const formatResponse = require("../utils/formatResponse");
+const generateJWTTokens = require("../utils/generateJWTTokens");
+const cookieConfig = require("../config/cookieConfig");
 
 class AuthController {
   static async refreshTokens(req, res) {
@@ -22,21 +22,21 @@ class AuthController {
 
       return res
         .status(201)
-        .cookie('refreshToken', newRefreshToken, cookieConfig)
+        .cookie("refreshToken", newRefreshToken, cookieConfig)
         .json(
-          formatResponse(201, 'Успешно продлена пользовательская сессия', {
+          formatResponse(201, "Успешно продлена пользовательская сессия", {
             user,
             accessToken,
           })
         );
     } catch ({ message }) {
       console.log(
-        '=============AuthController.refreshTokens=============',
+        "=============AuthController.refreshTokens=============",
         message
       );
       res
         .status(401)
-        .json(formatResponse(401, 'Invalid refreshToken', null, message));
+        .json(formatResponse(401, "Invalid refreshToken", null, message));
     }
   }
 
@@ -82,34 +82,33 @@ class AuthController {
           .json(
             formatResponse(
               500,
-              'Не удалось создать пользователя',
+              "Не удалось создать пользователя",
               null,
-              'Не удалось создать пользователя'
+              "Не удалось создать пользователя"
             )
           );
       }
 
-      //! ВАЖНО прокинуть объектом
       const { accessToken, refreshToken } = generateJWTTokens({
         user: newUser,
       });
 
       return res
         .status(201)
-        .cookie('refreshToken', refreshToken, cookieConfig)
+        .cookie("refreshToken", refreshToken, cookieConfig)
         .json(
           formatResponse(
             201,
-            'Пользователь успешно зарегистрирован',
+            "Пользователь успешно зарегистрирован",
             { accessToken, user: newUser },
             null
           )
         );
     } catch ({ message }) {
-      console.error('======AuthController.signUp===\n', message);
+      console.error("======AuthController.signUp===\n", message);
       res
         .status(500)
-        .json(formatResponse(500, 'Внутреннаяя ошибка сервера', null, message));
+        .json(formatResponse(500, "Внутреннаяя ошибка сервера", null, message));
     }
   }
 
@@ -162,40 +161,39 @@ class AuthController {
 
       delete userFound.password;
 
-      //! ВАЖНО прокинуть объектом
       const { accessToken, refreshToken } = generateJWTTokens({
         user: userFound,
       });
 
       return res
         .status(200)
-        .cookie('refreshToken', refreshToken, cookieConfig)
+        .cookie("refreshToken", refreshToken, cookieConfig)
         .json(
           formatResponse(
             200,
-            'Пользователь успешно вошёл',
+            "Пользователь успешно вошёл",
             { accessToken, user: userFound },
             null
           )
         );
     } catch ({ message }) {
-      console.error('======AuthController.signIn===\n', message);
+      console.error("======AuthController.signIn===\n", message);
       res
         .status(500)
-        .json(formatResponse(500, 'Внутреннаяя ошибка сервера', null, message));
+        .json(formatResponse(500, "Внутреннаяя ошибка сервера", null, message));
     }
   }
 
   static signOut(req, res) {
     try {
       res
-        .clearCookie('refreshToken')
-        .json(formatResponse(200, 'Успешно вышли'));
+        .clearCookie("refreshToken")
+        .json(formatResponse(200, "Успешно вышли"));
     } catch ({ message }) {
-      console.log('=============AuthController.signOut=============', message);
+      console.log("=============AuthController.signOut=============", message);
       res
         .status(500)
-        .json(formatResponse(500, 'Внутренняя ошибка сервера', null, message));
+        .json(formatResponse(500, "Внутренняя ошибка сервера", null, message));
     }
   }
 }
