@@ -8,3 +8,4 @@ authRouter
   .get('/signOut', AuthController.signOut);
 
 module.exports = authRouter;
+
