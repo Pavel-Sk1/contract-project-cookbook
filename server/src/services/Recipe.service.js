@@ -5,6 +5,7 @@ class RecipeService {
     const recipes = await Recipe.findAll({
       include: {
         model: User,
+        as: 'FavoritedByUsers',
         attributes: ["id", "username", "email"],
         through: { attributes: [] },
       },
@@ -16,6 +17,7 @@ class RecipeService {
     return await Recipe.findByPk(id, {
       include: {
         model: User,
+        as: 'FavoritedByUsers',
         attributes: ["id", "username", "email"],
         through: { attributes: [] },
       },

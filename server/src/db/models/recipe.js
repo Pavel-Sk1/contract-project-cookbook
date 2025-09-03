@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
   class Recipe extends Model {
     static associate({ User, Favorite }) {
       this.belongsToMany(User, {
-        through: Favorite,
-        as: 'FavoritedByUsers',
-        foreignKey: "recipeId",        
+        through: Favorite, 
+        as: 'FavoritedByUsers',       
+        foreignKey: "recipeId", 
       });
     }
 
