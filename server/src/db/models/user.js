@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
   
     static associate(models) {
-     this.belongsToMany(models.Favourite, {foreignKey: "FavouriteId"})
+     this.belongsToMany(models.Recipe, {through: models.Favorite, as: 'FavoriteRecipes', foreignKey: "userId"})
     }
      static validateEmail(email) {
       const emailPattern = /^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$/;
