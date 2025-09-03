@@ -1,0 +1,114 @@
+.favorites-page-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-color: #fcf4f4;
+  min-height: calc(100vh - 80px);
+}
+
+.favorites-content {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px; 
+  padding: 2rem;
+  text-align: center;
+  font-family: "Pacifico", monospace;
+  color: #333;
+}
+
+.favorites-title {
+  font-size: 2.5rem;
+  color: #5cb85c;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-family: "Pacifico", cursive;
+}
+
+.sort-options {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sort-button {
+  background-color: #f7e6e6; /* Мягкий розовый */
+  color: #333;
+  border: 1px solid #e0c2c2;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.sort-button:hover {
+  background-color: #f0b7b7; /* Немного темнее розовый */
+  border-color: #e91e63;
+}
+
+.sort-button.active {
+  background-color: #5cb85c; /* Акцентный зеленый */
+  color: #ffffff;
+  border-color: #4a9e4a;
+}
+
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.recipe-item-card {
+  background-color: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  text-align: left;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.2s ease;
+}
+
+.recipe-item-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-item-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.recipe-item-title {
+  font-size: 1.4rem;
+  color: #e91e63; /* Более темный розовый */
+  margin-bottom: 0.5rem;
+}
+
+.recipe-item-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .favorites-content {
+    padding: 1.5rem;
+  }
+
+  .favorites-title {
+    font-size: 2rem;
+  }
+
+  .recipe-list {
+    grid-template-columns: 1fr;
+  }
+}
