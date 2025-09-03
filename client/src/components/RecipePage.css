@@ -1,0 +1,103 @@
+.recipe-page-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-color: #fcf4f4; /* Очень мягкий розовый для фона страницы */
+  min-height: calc(
+    100vh - 80px
+  ); /* Учитываем высоту хедера, если он будет фиксированным */
+}
+
+.recipe-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px; /* Примерно 1/2 от ширины окна, если оно 1400px */
+  padding: 2rem;
+  text-align: center;
+  font-family: "Pacifico", monospace; /* Уютный шрифт */
+  color: #333;
+}
+
+.recipe-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-title {
+  font-size: 2.5rem;
+  color: #5cb85c; /* Акцентный зеленый */
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-family: "Pacifico", cursive;
+}
+
+.recipe-section {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.recipe-section h3 {
+  font-size: 1.8rem;
+  color: #e91e63; /* Более темный розовый для заголовков секций */
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f0b7b7; /* Деликатная розовая линия */
+  padding-bottom: 0.5rem;
+}
+
+.ingredients-list,
+.instructions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-list li,
+.instructions-list li {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.ingredients-list li::before {
+  content: "•";
+  color: #5cb85c; /* Зеленая точка */
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.instructions-list li {
+  counter-increment: step-counter;
+}
+
+.instructions-list li::before {
+  content: counter(step-counter) ". ";
+  color: #5cb85c;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .recipe-card {
+    padding: 1.5rem;
+  }
+
+  .recipe-title {
+    font-size: 2rem;
+  }
+
+  .recipe-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .ingredients-list li,
+  .instructions-list li {
+    font-size: 1rem;
+  }
+}
