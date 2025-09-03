@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       ingredients: {
-        type: Sequelize.STRING
+        type: Sequelize.JSONB
       },
       cooking_time: {
         type: Sequelize.INTEGER

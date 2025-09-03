@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(User, {
         through: Favorite,
         as: 'FavoritedByUsers',
-        foreignKey: "recipe_id",        
+        foreignKey: "recipeId",        
       });
     }
 
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         };
       }
 
-      if (!ingredients || typeof ingredients !== "string" || ingredients.trim().length === 0) {
+      if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
         return {
           isValid: false,
           error: "Ингредиенты рецепта должны быть не пустой строкой",
@@ -90,7 +90,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: DataTypes.STRING,
       instructions: DataTypes.TEXT,
-      ingredients: DataTypes.STRING,
+      ingredients: DataTypes.JSONB,
       cooking_time: DataTypes.INTEGER,
       quantity_ingredient: DataTypes.INTEGER,
       img_url: DataTypes.TEXT,
