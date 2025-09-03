@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const recipesRoutes = require('./recipes.routes');
 const formatResponse = require('../utils/formatResponse');
-
+const authRoutes = require('./auth.routes');
 
 router.use('/recipes', recipesRoutes);
+router.use('/auth', authRoutes);
 
 router.use((req, res) => {
   res
@@ -11,4 +12,6 @@ router.use((req, res) => {
     .json(formatResponse(404, 'Маршрут не найден', null, 'Маршрут не найден'));
 });
 
+
 module.exports = router;
+

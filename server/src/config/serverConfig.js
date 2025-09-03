@@ -15,9 +15,11 @@ const serverConfig = (app) => {
   app.use(express.json());
   app.use(removeXPoweredBy);
   app.use(morgan('dev'));
-  app.use('/files', express.static(path.resolve(__dirname, '..', 'public')));
+//   app.use('/files', express.static(path.resolve(__dirname, '..', 'public')));
   app.use(cors(corsOptions));
   app.use(cookieParser());
 };
 
+
 module.exports = serverConfig;
+
