@@ -13,12 +13,25 @@
   padding: 0 1rem;
 }
 
-.logo {
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 0.5rem;
+}
+
+.header-logo {
+  height: 40px; /* Уменьшаем размер логотипа */
+  width: auto;
+}
+
+.site-title {
+  font-family: "Pacifico", cursive; /* Используем Pacifico для названия сайта */
   font-size: 1.8rem;
   font-weight: bold;
-  color: #5cb85c;
-  text-decoration: none;
-  
+  color: #5cb85c; /* Акцентный зеленый */
+  white-space: nowrap; /* Предотвращаем перенос текста */
 }
 
 .main-nav {
@@ -85,7 +98,7 @@
   width: 200px;
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: none; 
+  display: none;
   flex-direction: column;
 }
 

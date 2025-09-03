@@ -13,10 +13,13 @@ function Header() {
   return (
     <header className="header">
       <div className="container header-content">
-        
-        <Link to="/" className="logo">
-        <img src= "./src/assets/красный-и-зеленый-логотип-chili-126557028.png"/>
-          Агрегатор рецептов
+        <Link to="/" className="logo-container">
+          <img
+            src="/src/assets/красный-и-зеленый-логотип-chili-126557028.png"
+            alt="Логотип"
+            className="header-logo"
+          />
+          <span className="site-title">Агрегатор рецептов</span>
         </Link>
         <nav className="main-nav">
           <ul className="nav-menu-primary">
