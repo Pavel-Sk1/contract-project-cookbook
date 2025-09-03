@@ -13,7 +13,9 @@ function Header() {
   return (
     <header className="header">
       <div className="container header-content">
+        
         <Link to="/" className="logo">
+        <img src= "./src/assets/красный-и-зеленый-логотип-chili-126557028.png"/>
           Агрегатор рецептов
         </Link>
         <nav className="main-nav">

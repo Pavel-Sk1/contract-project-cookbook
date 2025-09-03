@@ -15,6 +15,46 @@
   text-align: center;
 }
 
+.filter-controls {
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filter-controls label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.1rem;
+  color: #555;
+  
+}
+
+.filter-select {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #f0b7b7; /* Мягкий розовый */
+  background-color: #f7e6e6; /* Мягкий розовый */
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+}
+
+.filter-select:hover {
+  border-color: #e91e63;
+  background-color: #f0b7b7; /* Немного темнее розовый */
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #5cb85c; /* Акцентный зеленый при фокусе */
+  box-shadow: 0 0 0 3px rgba(92, 184, 92, 0.2);
+}
+
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(
