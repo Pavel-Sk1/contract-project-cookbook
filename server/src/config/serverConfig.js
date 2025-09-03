@@ -20,4 +20,6 @@ const serverConfig = (app) => {
   app.use(cookieParser());
 };
 
+
 module.exports = serverConfig;
+
