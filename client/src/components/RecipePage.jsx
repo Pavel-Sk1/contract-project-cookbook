@@ -147,7 +147,7 @@ function RecipePage() {
   return (
     <div className="recipe-page-container">
       <div className="recipe-card">
-        <img src={recipe.image} alt={recipe.name} className="recipe-image" />
+        <img src={recipe.img_url} alt={recipe.name} className="recipe-image" />
         <h2 className="recipe-title">{recipe.name}</h2>
         <div className="recipe-section">
           <h3>Ингредиенты:</h3>
