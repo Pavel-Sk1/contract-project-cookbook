@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
   class Recipe extends Model {
     static associate({ User, Favorite }) {
       this.belongsToMany(User, {
-        through: Favorite, 
-        as: 'FavoritedByUsers',       
-        foreignKey: "recipeId", 
+        through: Favorite,
+        as: "FavoritedByUsers",
+        foreignKey: "recipeId",
       });
     }
 
@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         };
       }
 
+
       if (!instructions || !Array.isArray(instructions) || instructions.length === 0) {
         return {
           isValid: false,
@@ -32,7 +33,11 @@ module.exports = (sequelize, DataTypes) => {
         };
       }
 
-      if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
+      if (
+        !ingredients ||
+        !Array.isArray(ingredients) ||
+        ingredients.length === 0
+      ) {
         return {
           isValid: false,
           error: "Ингредиенты рецепта должны быть не пустой строкой",
@@ -79,7 +84,7 @@ module.exports = (sequelize, DataTypes) => {
             "Изображение должно быть с расширением jpg, jpeg, png, webp или gif",
         };
       }
-      
+
       return {
         isValid: true,
         error: null,

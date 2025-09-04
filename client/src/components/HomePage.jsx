@@ -1,69 +1,31 @@
 import React, { useState, useEffect, useMemo } from "react";
 import RecipeCard from "./RecipeCard";
 import "./HomePage.css";
+import axios from "axios";
 import { RecipesService } from "../entities/recipes/RecipeService";
 
-const mockRecipes = [
-  {
-    id: "1",
-    title: "Вкусный Куриный Суп",
-    img_url: "https://art-lunch.ru/content/uploads/2014/02/chicken-soup-001.jpg",
-    quantity_ingredient: 4,
-    cooking_time: 60, // Время в минутах
-  },
-  {
-    id: "2",
-    title: "Салат Цезарь",
-    img_url: "https://via.placeholder.com/300x200.png?text=Салат+Цезарь",
-    quantity_ingredient: 6,
-    cooking_time: 20,
-  },
-  {
-    id: "3",
-    title: "Паста Карбонара",
-    img_url: "https://via.placeholder.com/300x200.png?text=Паста+Карбонара",
-    quantity_ingredient: 7,
-    cooking_time: 30,
-  },
-  {
-    id: "4",
-    title: "Борщ Украинский",
-    img_url: "https://via.placeholder.com/300x200.png?text=Борщ",
-    quantity_ingredient: 10,
-    cooking_time: 90,
-  },
-  {
-    id: "5",
-    title: "Стейк из лосося",
-    img_url: "https://via.placeholder.com/300x200.png?text=Лосось",
-    quantity_ingredient: 3,
-    cooking_time: 25,
-  },
-  {
-    id: "6",
-    title: "Овощное рагу",
-    img_url: "https://via.placeholder.com/300x200.png?text=Рагу",
-    quantity_ingredient: 8,
-    cooking_time: 45,
-  },
-];
 
-// Функция для имитации получения данных из API
-const fetchRecipes = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Перемешиваем рецепты для случайного порядка при первоначальной загрузке
-      const shuffledRecipes = [...mockRecipes].sort(() => 0.5 - Math.random());
-      resolve(shuffledRecipes);
-    }, 500);
-  });
+const fetchRecipes = async (query = "") => {
+  try {
+    const response = await axios.get(`/api/meals`, { params: { query } }); // Изменено на /api/meals
+    return response.data.map((meal) => ({
+      id: meal.id, // TheMealDB ID
+      title: meal.title, // Название блюда
+      img_url: meal.image, // Изображение
+      cooking_time: meal.cooking_time, // Теперь может быть null, если не получено
+      quantity_ingredient: meal.quantity_ingredient, // Теперь может быть null, если не получено
+    }));
+  } catch (error) {
+    console.error("Error fetching recipes from API:", error);
+    throw error;
+  }
 };
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState("random"); // Состояние для выбранного фильтра
+  const [selectedFilter, setSelectedFilter] = useState("random");
 
   const getAllRecipeHandler = async () => {
     try {

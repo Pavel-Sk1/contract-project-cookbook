@@ -1,86 +1,57 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./RecipePage.css";
-import { RecipesService } from "../entities/recipes/RecipeService";
 
-// const mockFullRecipes = [
-//   {
-//     id: "1",
-//     title: "Вкусный Куриный Суп",
-//     img_url: "https://via.placeholder.com/600x400.png?text=Куриный+Суп",
-//     ingredients: [
-//       "1 кг курицы",
-//       "2 л воды",
-//       "2 моркови",
-//       "3 картофелины",
-//       "1 луковица",
-//       "Соль, перец по вкусу",
-//       "Зелень для подачи",
-//     ],
-//     instructions: [
-//       "1. Курицу промыть, залить холодной водой и довести до кипения. Снять пену.",
-//       "2. Добавить целую луковицу и морковь, варить на медленном огне 40-60 минут.",
-//       "3. Курицу вынуть, отделить мясо от костей, нарезать. Бульон процедить.",
-//       "4. Картофель и морковь нарезать кубиками. Добавить в бульон, варить 15 минут.",
-//       "5. Добавить нарезанное куриное мясо, посолить, поперчить. Варить еще 5 минут.",
-//       "6. Подавать, посыпав свежей зеленью.",
-//     ],
-//   },
-//   {
-//     id: "2",
-//     title: "Салат Цезарь",
-//     img_url: "https://via.placeholder.com/600x400.png?text=Салат+Цезарь",
-//     ingredients: [
-//       "1 кочан салата Романо",
-//       "200 г куриного филе",
-//       "50 г пармезана",
-//       "Гренки",
-//       "Соус Цезарь",
-//     ],
-//     instructions: [
-//       "1. Куриное филе отварить или обжарить, нарезать.",
-//       "2. Салат порвать руками, выложить на тарелку.",
-//       "3. Добавить нарезанное филе, тертый пармезан, гренки.",
-//       "4. Заправить соусом Цезарь.",
-//     ],
-//   },
-//   {
-//     id: "3",
-//     title: "Паста Карбонара",
-//     img_url: "https://via.placeholder.com/600x400.png?text=Паста+Карбонара",
-//     ingredients: [
-//       "200 г спагетти",
-//       "100 г бекона",
-//       "2 яйца",
-//       "50 г пармезана",
-//       "Черный перец",
-//     ],
-//     instructions: [
-//       "1. Отварить спагетти до состояния аль денте.",
-//       "2. Бекон нарезать и обжарить до хрустящей корочки.",
-//       "3. Взбить яйца с тертым пармезаном и перцем.",
-//       "4. Слить воду со спагетти, добавить бекон, затем яичную смесь, быстро перемешать.",
-//     ],
-//   },
-// ];
+import axios from "axios";
 
-// // Функция для имитации получения данных одного рецепта по ID из API
-// const fetchRecipeById = (id) => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       const recipe = mockFullRecipes.find((r) => r.id === id);
-//       resolve(recipe);
-//     }, 300);
-//   });
+// const fetchRecipeById = async (id) => {
+//   try {
+//     const response = await axios.get(`/api/meals/${id}`); // Изменено на /api/meals/${id}
+//     const data = response.data;
+//     return {
+//       id: data.idMeal, // TheMealDB ID
+//       title: data.strMeal, // Название блюда
+//       img_url: data.strMealThumb, // Изображение
+//       ingredients: data.ingredients, // Массив ингредиентов уже подготовлен на сервере
+//       instructions: data.instructions, // Массив инструкций уже подготовлен на сервере
+//       cooking_time: data.cooking_time, // Время приготовления (может быть null)
+//       youtube: data.youtube, // Ссылка на Youtube
+//       source: data.source, // Ссылка на источник
+//     };
+//   } catch (error) {
+//     console.error(`Error fetching recipe ${id} from API:`, error);
+//     throw error;
+//   }
 // };
 
-
+import { RecipesService } from "../entities/recipes/RecipeService";
 
 function RecipePage() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+
+//   console.log("RecipePage - ID from URL:", id); // Логирование ID
+
+//   useEffect(() => {
+//     setLoading(true);
+//     fetchRecipeById(id)
+//       .then((data) => {
+//         console.log("RecipePage - Fetched data:", data); // Логирование полученных данных
+//         if (data) {
+//           setRecipe(data);
+//         } else {
+//           setError("Рецепт не найден.");
+//         }
+//         setLoading(false);
+//       })
+//       .catch((err) => {
+//         setError("Не удалось загрузить рецепт.");
+//         setLoading(false);
+//       });
+//   }, [id]);
 
 
   const getRecipeByIdHandler = async (id) => {
@@ -103,22 +74,10 @@ function RecipePage() {
   }
 }
 
-  useEffect(() => {
-    // fetchRecipeById(id)
-    //   .then((data) => {
-    //     if (data) {
-    //       setRecipe(data);
-    //     } else {
-    //       setError("Рецепт не найден.");
-    //     }
-    //     setLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     setError("Не удалось загрузить рецепт.");
-    //     setLoading(false);
-    //   });
+  useEffect(() => {    
     getRecipeByIdHandler(id)    
   }, [id]); // Зависимость от ID, чтобы перезагружать при изменении маршрута
+
 
   if (loading) {
     return (
@@ -147,12 +106,20 @@ function RecipePage() {
   return (
     <div className="recipe-page-container">
       <div className="recipe-card">
+
+//         <img src={recipe.image} alt={recipe.title} className="recipe-image" />
+//         <h2 className="recipe-title">{recipe.title}</h2>
+//         {recipe.category && <p>Категория: {recipe.category}</p>}
+//         {recipe.area && <p>Регион: {recipe.area}</p>}
+
         <img src={recipe.img_url} alt={recipe.name} className="recipe-image" />
         <h2 className="recipe-title">{recipe.name}</h2>
+
         <div className="recipe-section">
           <h3>Ингредиенты:</h3>
           <ul className="ingredients-list">
             {recipe.ingredients.map((item, index) => (
+              
               <li key={index}>{item}</li>
             ))}
           </ul>
@@ -165,6 +132,22 @@ function RecipePage() {
             ))}
           </ol>
         </div>
+        {recipe.youtube && (
+          <div className="recipe-section">
+            <h3>Видео-инструкция:</h3>
+            <a href={recipe.youtube} target="_blank" rel="noopener noreferrer">
+              Смотреть на YouTube
+            </a>
+          </div>
+        )}
+        {recipe.source && (
+          <div className="recipe-section">
+            <h3>Источник:</h3>
+            <a href={recipe.source} target="_blank" rel="noopener noreferrer">
+              Перейти к источнику
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
