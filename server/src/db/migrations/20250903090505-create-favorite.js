@@ -37,5 +37,5 @@ module.exports = {
   type: 'unique',
   name: 'favorites_user_recipe_unique',
 });
-},
+}
 }

@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./RecipePage.css";
+
 import axios from "axios";
 
-const fetchRecipeById = async (id) => {
-  try {
-    const response = await axios.get(`/api/meals/${id}`); // Изменено на /api/meals/${id}
-    const data = response.data;
-    return {
-      id: data.idMeal, // TheMealDB ID
-      title: data.strMeal, // Название блюда
-      img_url: data.strMealThumb, // Изображение
-      ingredients: data.ingredients, // Массив ингредиентов уже подготовлен на сервере
-      instructions: data.instructions, // Массив инструкций уже подготовлен на сервере
-      cooking_time: data.cooking_time, // Время приготовления (может быть null)
-      youtube: data.youtube, // Ссылка на Youtube
-      source: data.source, // Ссылка на источник
-    };
-  } catch (error) {
-    console.error(`Error fetching recipe ${id} from API:`, error);
-    throw error;
-  }
-};
+// const fetchRecipeById = async (id) => {
+//   try {
+//     const response = await axios.get(`/api/meals/${id}`); // Изменено на /api/meals/${id}
+//     const data = response.data;
+//     return {
+//       id: data.idMeal, // TheMealDB ID
+//       title: data.strMeal, // Название блюда
+//       img_url: data.strMealThumb, // Изображение
+//       ingredients: data.ingredients, // Массив ингредиентов уже подготовлен на сервере
+//       instructions: data.instructions, // Массив инструкций уже подготовлен на сервере
+//       cooking_time: data.cooking_time, // Время приготовления (может быть null)
+//       youtube: data.youtube, // Ссылка на Youtube
+//       source: data.source, // Ссылка на источник
+//     };
+//   } catch (error) {
+//     console.error(`Error fetching recipe ${id} from API:`, error);
+//     throw error;
+//   }
+// };
+
+import { RecipesService } from "../entities/recipes/RecipeService";
 
 function RecipePage() {
   const { id } = useParams();
@@ -29,25 +32,52 @@ function RecipePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log("RecipePage - ID from URL:", id); // Логирование ID
 
-  useEffect(() => {
+//   console.log("RecipePage - ID from URL:", id); // Логирование ID
+
+//   useEffect(() => {
+//     setLoading(true);
+//     fetchRecipeById(id)
+//       .then((data) => {
+//         console.log("RecipePage - Fetched data:", data); // Логирование полученных данных
+//         if (data) {
+//           setRecipe(data);
+//         } else {
+//           setError("Рецепт не найден.");
+//         }
+//         setLoading(false);
+//       })
+//       .catch((err) => {
+//         setError("Не удалось загрузить рецепт.");
+//         setLoading(false);
+//       });
+//   }, [id]);
+
+
+  const getRecipeByIdHandler = async (id) => {
+  try {
     setLoading(true);
-    fetchRecipeById(id)
-      .then((data) => {
-        console.log("RecipePage - Fetched data:", data); // Логирование полученных данных
-        if (data) {
-          setRecipe(data);
-        } else {
-          setError("Рецепт не найден.");
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError("Не удалось загрузить рецепт.");
-        setLoading(false);
-      });
-  }, [id]);
+    const result = await RecipesService.getById(id)
+
+    if(result.error) {
+      setError(result.error);
+        return;
+    }
+
+    if (result.statusCode === 200) {
+      setRecipe(result.data)
+    }
+  } catch (error) {
+    setError(error.message);
+  } finally {
+    setLoading(false);
+  }
+}
+
+  useEffect(() => {    
+    getRecipeByIdHandler(id)    
+  }, [id]); // Зависимость от ID, чтобы перезагружать при изменении маршрута
+
 
   if (loading) {
     return (
@@ -76,11 +106,14 @@ function RecipePage() {
   return (
     <div className="recipe-page-container">
       <div className="recipe-card">
-        <img src={recipe.image} alt={recipe.title} className="recipe-image" />
-        <h2 className="recipe-title">{recipe.title}</h2>
-        {recipe.category && <p>Категория: {recipe.category}</p>}
-        {recipe.area && <p>Регион: {recipe.area}</p>}
 
+//         <img src={recipe.image} alt={recipe.title} className="recipe-image" />
+//         <h2 className="recipe-title">{recipe.title}</h2>
+//         {recipe.category && <p>Категория: {recipe.category}</p>}
+//         {recipe.area && <p>Регион: {recipe.area}</p>}
+
+        <img src={recipe.img_url} alt={recipe.name} className="recipe-image" />
+        <h2 className="recipe-title">{recipe.name}</h2>
 
         <div className="recipe-section">
           <h3>Ингредиенты:</h3>

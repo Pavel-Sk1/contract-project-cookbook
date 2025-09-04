@@ -25,11 +25,8 @@ module.exports = (sequelize, DataTypes) => {
         };
       }
 
-      if (
-        !instructions ||
-        typeof instructions !== "string" ||
-        instructions.trim().length === 0
-      ) {
+
+      if (!instructions || !Array.isArray(instructions) || instructions.length === 0) {
         return {
           isValid: false,
           error: "Инструкции к рецепту должны быть не пустой строкой",
@@ -97,7 +94,7 @@ module.exports = (sequelize, DataTypes) => {
   Recipe.init(
     {
       title: DataTypes.STRING,
-      instructions: DataTypes.TEXT,
+      instructions: DataTypes.JSONB,
       ingredients: DataTypes.JSONB,
       cooking_time: DataTypes.INTEGER,
       quantity_ingredient: DataTypes.INTEGER,
