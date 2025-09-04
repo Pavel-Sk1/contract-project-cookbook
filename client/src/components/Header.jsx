@@ -4,7 +4,7 @@ import "./Header.css";
 
 function Header() {
   const [userMenuOpen, setUserMenuOpen] = useState(false); // Состояние для выпадающего меню пользователя
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Предполагаем состояние авторизации
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleUserMenu = () => {
     setUserMenuOpen(!userMenuOpen);
@@ -31,7 +31,7 @@ function Header() {
           <div className="user-menu">
             <button className="user-menu-toggle" onClick={toggleUserMenu}>
               {isLoggedIn ? "Профиль" : "Войти/Рег."}{" "}
-              {/* Текст кнопки меняется в зависимости от статуса */}
+              {}
               <span className="dropdown-arrow">▼</span>
             </button>
             <ul className={`user-dropdown-menu ${userMenuOpen ? "open" : ""}`}>
