@@ -58,7 +58,7 @@
 }
 
 .register-button {
-  background-color: #5cb85c; /* Акцентный зеленый */
+  background-color: #5cb85c; 
   color: #ffffff;
   border: none;
   padding: 1rem 2rem;
@@ -71,7 +71,7 @@
 }
 
 .register-button:hover {
-  background-color: #4a9e4a; /* Темнее зеленый при наведении */
+  background-color: #4a9e4a;
   transform: translateY(-2px);
 }
 
