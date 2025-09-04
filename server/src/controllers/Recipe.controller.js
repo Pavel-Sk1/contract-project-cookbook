@@ -5,9 +5,7 @@ const { Recipe: RecipeValidator } = require("../db/models");
 
 class RecipeController {
   static async getAll(req, res) {
-    try {
-      //! если !isAuth ===>> 401
-      //! если isAuth && isNotAdmin ===>> 403
+    try {      
       const recipes = await RecipeService.getAll();
 
       //!-----
