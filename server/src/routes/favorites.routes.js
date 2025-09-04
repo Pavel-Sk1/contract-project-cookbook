@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const FavoriteController = require('../controllers/favorite.controller');
+const FavoriteController = require('../controllers/favorites.controller');
 
 router.get('/', FavoriteController.getAll);
 router.get('/user/:userId', FavoriteController.getByUser);
