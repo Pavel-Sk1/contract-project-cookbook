@@ -75,7 +75,7 @@ function FavoritesPage() {
                 <h3 className="recipe-item-title">{recipe.title}</h3>
                 <p>Время приготовления: {recipe.cookingTime} мин.</p>
                 <p>Ингредиентов: {recipe.ingredientsCount}</p>
-                {/* Здесь можно добавить кнопку "Перейти к рецепту" */}
+                {}
               </div>
             ))
           ) : (

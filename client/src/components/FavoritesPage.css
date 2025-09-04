@@ -35,7 +35,7 @@
 }
 
 .sort-button {
-  background-color: #f7e6e6; /* Мягкий розовый */
+  background-color: #f7e6e6;
   color: #333;
   border: 1px solid #e0c2c2;
   padding: 0.7rem 1.2rem;
@@ -46,12 +46,12 @@
 }
 
 .sort-button:hover {
-  background-color: #f0b7b7; /* Немного темнее розовый */
+  background-color: #f0b7b7; 
   border-color: #e91e63;
 }
 
 .sort-button.active {
-  background-color: #5cb85c; /* Акцентный зеленый */
+  background-color: #5cb85c; 
   color: #ffffff;
   border-color: #4a9e4a;
 }
@@ -89,7 +89,7 @@
 
 .recipe-item-title {
   font-size: 1.4rem;
-  color: #e91e63; /* Более темный розовый */
+  color: #e91e63; 
   margin-bottom: 0.5rem;
 }
 
