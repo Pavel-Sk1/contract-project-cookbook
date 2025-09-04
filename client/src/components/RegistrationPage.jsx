@@ -3,7 +3,7 @@ import "./RegistrationPage.css";
 
 function RegistrationPage() {
   const [formData, setFormData] = useState({
-    login: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -18,7 +18,7 @@ function RegistrationPage() {
     e.preventDefault();
     console.log("Регистрационные данные:", formData);
     setMessage("Регистрация прошла успешно (имитация)!");
-    setFormData({ login: "", email: "", password: "" });
+    setFormData({ username: "", email: "", password: "" });
   };
 
   return (
@@ -32,7 +32,7 @@ function RegistrationPage() {
               type="text"
               id="login"
               name="login"
-              value={formData.login}
+              value={formData.username}
               onChange={handleChange}
               required
             />

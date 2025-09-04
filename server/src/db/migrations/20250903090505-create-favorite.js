@@ -38,4 +38,5 @@ module.exports = {
   name: 'favorites_user_recipe_unique',
 });
 };
+
 }

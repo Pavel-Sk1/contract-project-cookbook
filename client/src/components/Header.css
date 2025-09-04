@@ -22,21 +22,21 @@
 }
 
 .header-logo {
-  height: 40px; /* Уменьшаем размер логотипа */
+  height: 40px; 
   width: auto;
 }
 
 .site-title {
-  font-family: "Pacifico", cursive; /* Используем Pacifico для названия сайта */
+  font-family: "Pacifico", cursive; 
   font-size: 1.8rem;
   font-weight: bold;
-  color: #5cb85c; /* Акцентный зеленый */
-  white-space: nowrap; /* Предотвращаем перенос текста */
+  color: #5cb85c;
+  white-space: nowrap; 
 }
 
 .main-nav {
   position: relative;
-  display: flex; /* Для выравнивания основной навигации и меню пользователя */
+  display: flex; 
   align-items: center;
   gap: 1.5rem;
 }
@@ -59,7 +59,7 @@
 }
 
 .nav-menu-primary li a:hover {
-  background-color: rgba(92, 184, 92, 0.2); /* Легкий зеленый при наведении */
+  background-color: rgba(92, 184, 92, 0.2); 
 }
 
 .user-menu {
@@ -67,7 +67,7 @@
 }
 
 .user-menu-toggle {
-  background-color: #f7e6e6; /* Мягкий розовый */
+  background-color: #f7e6e6; 
   color: #333;
   border: 1px solid #e0c2c2;
   padding: 0.7rem 1.2rem;
@@ -81,7 +81,7 @@
 }
 
 .user-menu-toggle:hover {
-  background-color: #f0b7b7; /* Немного темнее розовый */
+  background-color: #f0b7b7; 
   border-color: #e91e63;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .user-dropdown-menu.open {
-  display: flex; /* Открыто */
+  display: flex;
 }
 
 .user-dropdown-menu li {
@@ -127,10 +127,10 @@
 
 .user-dropdown-menu li a:hover,
 .user-dropdown-menu li button:hover {
-  background-color: #fcf4f4; /* Очень мягкий розовый */
+  background-color: #fcf4f4;
 }
 
-/* Мобильные стили для адаптивности */
+
 @media (max-width: 768px) {
   .main-nav {
     flex-direction: column;
@@ -139,25 +139,25 @@
   }
 
   .nav-menu-primary {
-    display: none; /* Скрыть основные ссылки на мобильных, если они дублируются */
+    display: none; 
   }
 
   .user-menu {
     width: 100%;
     display: flex;
-    justify-content: flex-end; /* Выровнять кнопку меню вправо */
+    justify-content: flex-end; 
   }
 
   .user-menu-toggle {
-    width: auto; /* Автоматическая ширина для кнопки */
+    width: auto; 
   }
 
   .user-dropdown-menu {
-    position: static; /* Статичное позиционирование в мобильном меню */
+    position: static; 
     width: 100%;
     box-shadow: none;
     border: none;
     background-color: transparent;
-    margin-top: 0.5rem; /* Небольшой отступ от кнопки */
+    margin-top: 0.5rem; 
   }
 }

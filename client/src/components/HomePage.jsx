@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import RecipeCard from "./RecipeCard";
 import "./HomePage.css";
+import { RecipesService } from "../entities/recipes/RecipeService";
 
 const mockRecipes = [
   {
@@ -64,19 +65,37 @@ function HomePage() {
   const [error, setError] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState("random"); // Состояние для выбранного фильтра
 
-  useEffect(() => {
-    const loadRecipes = async () => {
+  const getAllRecipeHandler = async () => {
+    try {
       setLoading(true);
-      try {
-        const data = await fetchRecipes();
-        setRecipes(data);
-      } catch (err) {
-        setError("Не удалось загрузить рецепты.");
-      } finally {
-        setLoading(false);
+      const result = await RecipesService.getAll()
+      if (result.error) {
+        setError(result.error)
       }
-    };
-    loadRecipes();
+      if (result.statusCode === 200) {
+        setRecipes(result.data)
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    // const loadRecipes = async () => {
+    //   setLoading(true);
+    //   try {
+    //     const data = await fetchRecipes();
+    //     setRecipes(data);
+    //   } catch (err) {
+    //     setError("Не удалось загрузить рецепты.");
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
+    // loadRecipes();
+    getAllRecipeHandler()    
   }, []);
 
   // Мемоизированный отсортированный список рецептов

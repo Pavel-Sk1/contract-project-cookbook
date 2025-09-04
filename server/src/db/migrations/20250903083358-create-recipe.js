@@ -13,10 +13,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       instructions: {
-        type: Sequelize.TEXT
+        type: Sequelize.JSONB
       },
       ingredients: {
-        type: Sequelize.STRING
+        type: Sequelize.JSONB
       },
       cooking_time: {
         type: Sequelize.INTEGER

@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
   class Recipe extends Model {
     static associate({ User, Favorite }) {
       this.belongsToMany(User, {
-        through: Favorite,
-        as: 'FavoritedByUsers',
-        foreignKey: "recipe_id",        
+        through: Favorite, 
+        as: 'FavoritedByUsers',       
+        foreignKey: "recipeId", 
       });
     }
 
@@ -25,14 +25,14 @@ module.exports = (sequelize, DataTypes) => {
         };
       }
 
-      if (!instructions || typeof instructions !== "string" || instructions.trim().length === 0) {
+      if (!instructions || !Array.isArray(instructions) || instructions.length === 0) {
         return {
           isValid: false,
           error: "Инструкции к рецепту должны быть не пустой строкой",
         };
       }
 
-      if (!ingredients || typeof ingredients !== "string" || ingredients.trim().length === 0) {
+      if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
         return {
           isValid: false,
           error: "Ингредиенты рецепта должны быть не пустой строкой",
@@ -89,8 +89,8 @@ module.exports = (sequelize, DataTypes) => {
   Recipe.init(
     {
       title: DataTypes.STRING,
-      instructions: DataTypes.TEXT,
-      ingredients: DataTypes.STRING,
+      instructions: DataTypes.JSONB,
+      ingredients: DataTypes.JSONB,
       cooking_time: DataTypes.INTEGER,
       quantity_ingredient: DataTypes.INTEGER,
       img_url: DataTypes.TEXT,

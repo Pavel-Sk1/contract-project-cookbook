@@ -4,11 +4,11 @@ import { FaHeart } from "react-icons/fa"; // Импортируем иконку
 import "./RecipeCard.css";
 
 function RecipeCard({ recipe }) {
-  const [isFavorite, setIsFavorite] = useState(false); // Состояние для отслеживания избранного
+  const [isFavorite, setIsFavorite] = useState(false); 
 
   const toggleFavorite = (e) => {
-    e.preventDefault(); // Предотвращаем переход по ссылке при клике на сердечко
-    e.stopPropagation(); // Останавливаем всплытие события
+    e.preventDefault(); 
+    e.stopPropagation(); 
     setIsFavorite(!isFavorite);
     // Здесь должна быть логика добавления/удаления рецепта из избранного в глобальном состоянии или API
     console.log(
