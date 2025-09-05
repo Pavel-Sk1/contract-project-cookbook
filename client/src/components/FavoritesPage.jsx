@@ -67,7 +67,7 @@ function FavoritesPage({user}) {
       <div className="favorites-content">
         <h2 className="favorites-title">Избранные Рецепты</h2>
 
-        <div className="sort-options">
+        {/* <div className="sort-options">
           <span>Сортировать по: </span>
           <button
             className={`sort-button ${sortBy === "time" ? "active" : ""}`}
@@ -83,7 +83,7 @@ function FavoritesPage({user}) {
           >
             Количеству ингредиентов
           </button>
-        </div>
+        </div> */}
 
         <div className="recipe-list">
           {recipes?.length > 0 ? (

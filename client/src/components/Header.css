@@ -1,5 +1,5 @@
 .header {
-  background-color: #f7e6e6; /* Мягкий розовый */
+  background-color: #f7e6e6; 
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -50,7 +50,7 @@
 }
 
 .nav-menu-primary li a {
-  color: #333;
+  color: #5cb85c;
   text-decoration: none;
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
@@ -68,7 +68,7 @@
 
 .user-menu-toggle {
   background-color: #f7e6e6; 
-  color: #333;
+  color: #5cb85c;
   border: 1px solid #e0c2c2;
   padding: 0.7rem 1.2rem;
   border-radius: 8px;
@@ -116,7 +116,7 @@
   padding: 1rem;
   text-align: left;
   width: 100%;
-  color: #333;
+  color: #5cb85c;
   text-decoration: none;
   background: none;
   border: none;

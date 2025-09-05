@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 80px); /* Высота viewport минус высота хедера */
-  background-color: #f5f5f5;
+  background-color: #fcf4f4;
 }
 
 .login-form-card {
@@ -18,7 +18,7 @@
 
 .login-form-card h2 {
   margin-bottom: 30px;
-  color: #333;
+  color: #5cb85c;
   font-size: 28px;
 }
 
@@ -37,14 +37,14 @@
 .form-group input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #f0b7b7;
+  border-radius: 8px;
   font-size: 16px;
   box-sizing: border-box;
 }
 
 .form-group input:focus {
-  border-color: #007bff;
+  border-color: #fcf4f4;
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
@@ -59,7 +59,7 @@
 .login-form-card button {
   width: 100%;
   padding: 12px 20px;
-  background-color: #007bff;
+  background-color: #5cb85c;
   color: white;
   border: none;
   border-radius: 4px;
@@ -69,10 +69,10 @@
 }
 
 .login-form-card button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #5cb85c;
 }
 
 .login-form-card button:disabled {
-  background-color: #a0c9f1;
+  background-color: #fcf4f4;
   cursor: not-allowed;
 }

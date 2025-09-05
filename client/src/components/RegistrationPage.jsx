@@ -118,7 +118,6 @@ function RegistrationPage({ setUser }) {
               type="text"
               id="username"
               name="username"
-              placeholder="Введите логин"
               onChange={onChangeHandler}
               value={inputs.username}
               required
@@ -132,7 +131,6 @@ function RegistrationPage({ setUser }) {
               type="email"
               id="email"
               name="email"
-              placeholder="example@mail.com"
               onChange={onChangeHandler}
               value={inputs.email}
               required
@@ -146,7 +144,6 @@ function RegistrationPage({ setUser }) {
               type="password"
               id="password"
               name="password"
-              placeholder="Не менее 8 символов"
               onChange={onChangeHandler}
               value={inputs.password}
               required
@@ -163,7 +160,6 @@ function RegistrationPage({ setUser }) {
               type="password"
               id="repeatPassword"
               name="repeatPassword"
-              placeholder="Повторите пароль"
               onChange={onChangeHandler}
               value={inputs.repeatPassword}
               required

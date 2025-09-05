@@ -3,8 +3,8 @@
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
-  background-color: #fcf4f4; /* Очень мягкий розовый для фона страницы */
-  min-height: calc(100vh - 80px); /* Учитываем высоту хедера */
+  background-color: #fcf4f4; 
+  min-height: calc(100vh - 80px); 
 }
 
 .registration-form-card {
@@ -12,7 +12,7 @@
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 450px; /* Средняя ширина для формы */
+  max-width: 450px; 
   padding: 2.5rem;
   text-align: center;
   font-family: "Pacifico", monospace;
@@ -21,7 +21,7 @@
 
 .registration-title {
   font-size: 2.2rem;
-  color: #5cb85c; /* Акцентный зеленый */
+  color: #5cb85c; 
   margin-bottom: 2rem;
   font-weight: 700;
   font-family: "Pacifico", cursive;
@@ -36,7 +36,7 @@
   display: block;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
-  color: #e91e63; /* Более темный розовый */
+  color: #e91e63;
   font-weight: 500;
 }
 
@@ -45,14 +45,14 @@
 .registration-form input[type="password"] {
   width: 100%;
   padding: 0.8rem 0rem;
-  border: 1px solid #f0b7b7; /* Мягкий розовый */
+  border: 1px solid #f0b7b7; 
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .registration-form input:focus {
-  border-color: #5cb85c; /* Акцентный зеленый при фокусе */
+  border-color: #5cb85c; 
   box-shadow: 0 0 0 3px rgba(92, 184, 92, 0.2);
   outline: none;
 }
