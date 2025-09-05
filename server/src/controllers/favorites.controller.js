@@ -34,6 +34,8 @@ class FavoriteController {
   static async getByUser(req, res) {
     try {
       const { userId } = req.params;
+    console.log(userId, "<<<<<<<<<userId");
+    
       if (!isValidId(userId)) {
         return res
           .status(429)
@@ -41,7 +43,9 @@ class FavoriteController {
       }
 
       const favorites = await FavoriteService.getByUser(+userId);
-      console.log(favorites)
+      
+     console.log(favorites, "!!!!!!!");
+     
       return res
         .status(200)
         .json(formatResponse(200, 'успешно получены данные', favorites));

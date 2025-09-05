@@ -12,7 +12,7 @@ import { UserService } from "./entities/user/UserService";
 import { setAccessToken } from "./shared/lib/axiosInstance";
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState()
 
   const fetchUser = async () => {
     try {
@@ -31,8 +31,7 @@ function App() {
     }
   };
   useEffect(() => {
-    fetchUser();
-    console.log(user)
+    fetchUser();    
   }, []);
 
 

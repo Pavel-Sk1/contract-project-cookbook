@@ -43,20 +43,24 @@ function FavoritesPage({user}) {
 
   const getFavoriteRecipes = async () => {
     try {
-      console.log(user)
-      console.log(user)
-      const result = await FavoriteService.getByUserId(user?.id)
-      console.log(result)
-      setRecipes(result)
+      console.log(user, '<><><><')
+      
+      const result = await FavoriteService.getByUserId(user.id)
+      console.log(result.data, "sdfgkhsfiuadhf");
+       
+      setRecipes(result.data)
 
+      console.log(recipes, "12343536")
     } catch (error) {
       console.error(error.message)
     }
   }
 
   useEffect(() => {
-    getFavoriteRecipes()
-  },[])
+    if (user) {
+      getFavoriteRecipes()
+    }    
+  },[user])
 
   return (
     <div className="favorites-page-container">
@@ -82,17 +86,17 @@ function FavoritesPage({user}) {
         </div>
 
         <div className="recipe-list">
-          {recipes.length > 0 ? (
+          {recipes?.length > 0 ? (
             recipes.map((recipe) => (
-              <div key={recipe.id} className="recipe-item-card">
+              <div key={recipe['Recipe.id']} className="recipe-item-card">
                 <img
-                  src={recipe.img_url}
-                  alt={recipe.title}
+                  src={recipe['Recipe.img_url']}
+                  alt={recipe['Recipe.title']}
                   className="recipe-item-image"
                 />
-                <h3 className="recipe-item-title">{recipe.title}</h3>
-                <p>Время приготовления: {recipe.cookingTime} мин.</p>
-                <p>Ингредиентов: {recipe.ingredientsCount}</p>
+                <h3 className="recipe-item-title">{recipe['Recipe.title']}</h3>
+                <p>Время приготовления: {recipe['Recipe.cooking_time']} мин.</p>
+                <p>Ингредиентов: {recipe['Recipe.quantity_ingredient']}</p>
                 {}
               </div>
             ))
