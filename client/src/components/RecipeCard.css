@@ -1,0 +1,116 @@
+.recipe-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.recipe-card-item {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.favorite-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+.favorite-button:focus,
+.favorite-button:focus-visible {
+  outline: none;
+  box-shadow: none; 
+}
+
+.favorite-button svg {
+  color: #888; /* Изначальный серый цвет */
+  font-size: 1.4rem; /* Дополнительно увеличиваем размер иконки */
+}
+
+.favorite-button.active svg {
+  color: #e91e63; /* Темный розовый, когда в избранном */
+}
+
+.recipe-card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card-image {
+  width: 100%;
+  height: 180px; /* Фиксированная высота для изображений */
+  object-fit: cover;
+}
+
+.recipe-card-info {
+  padding: 1.2rem;
+  flex-grow: 1; /* Чтобы информация занимала все доступное пространство */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 4rem;
+}
+
+.recipe-card-title {
+  font-family: "Pacifico", cursive;
+  font-size: 1.6rem;
+  color: #e91e63; /* Темный розовый для заголовков карточек */
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.recipe-card-description {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.recipe-card-meta {
+  position: absolute;
+  bottom: 1.2rem; /* Отступ от низа */
+  left: 1.2rem;
+  right: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.quantity-ingredient {
+  background-color: #fcf4f4; /* Очень мягкий розовый */
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #f0b7b7;
+}
+
+.cooking-time {
+  background-color: #fcf4f4; /* Очень мягкий розовый */
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #f0b7b7;
+}

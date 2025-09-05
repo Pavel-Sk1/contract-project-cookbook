@@ -1,0 +1,4 @@
+.main {
+  padding-top: 0; /* Header теперь управляет своим отступом */
+  min-height: calc(100vh - 80px); /* Adjust based on actual header height */
+}
