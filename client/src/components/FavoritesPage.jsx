@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./FavoritesPage.css";
 import { FavoriteService } from "../entities/favorites/FavoriteService";
+import { Link } from "react-router-dom";
 
 // const mockRecipes = [
 //   {
@@ -88,6 +89,7 @@ function FavoritesPage({user}) {
         <div className="recipe-list">
           {recipes?.length > 0 ? (
             recipes.map((recipe) => (
+              <Link to={`/recipes/${recipe.recipeId}`} className="recipe-card-link">
               <div key={recipe['Recipe.id']} className="recipe-item-card">
                 <img
                   src={recipe['Recipe.img_url']}
@@ -99,6 +101,7 @@ function FavoritesPage({user}) {
                 <p>Ингредиентов: {recipe['Recipe.quantity_ingredient']}</p>
                 {}
               </div>
+              </Link>
             ))
           ) : (
             <p>У вас пока нет избранных рецептов.</p>
