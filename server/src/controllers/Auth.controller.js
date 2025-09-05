@@ -70,9 +70,11 @@ class AuthController {
           );
       }
 
+      const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+
       const newUser = await UserService.create({
         email,
-        password,
+        password: hashedPassword, // Store the hashed password
         username,
       });
 

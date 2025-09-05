@@ -3,16 +3,16 @@
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
-  background-color: #fcf4f4; /* Очень мягкий розовый для фона страницы */
-  min-height: calc(100vh - 80px); /* Учитываем высоту хедера */
+  background-color: #fcf4f4; 
+  min-height: calc(100vh - 80px); 
 }
 
 .registration-form-card {
   background-color: #ffffff;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
   width: 100%;
-  max-width: 450px; /* Средняя ширина для формы */
+  max-width: 450px; 
   padding: 2.5rem;
   text-align: center;
   font-family: "Pacifico", monospace;
@@ -44,11 +44,11 @@
 .registration-form input[type="email"],
 .registration-form input[type="password"] {
   width: 100%;
-  padding: 0.8rem 0rem;
-  border: 1px solid #f0b7b7; /* Мягкий розовый */
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
 .registration-form input:focus {

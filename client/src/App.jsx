@@ -7,20 +7,16 @@ import RegistrationPage from "./components/RegistrationPage";
 import LoginPage from "./components/LoginPage";
 
 import "./App.css";
-import { useState } from "react";
 
 function App() {
-  // const [user, setUser] = useState(null)
-
-
 
   return (
     <Router>
-      <Header />
+      <Header /> 
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} /> {}
-          <Route path="/recipes/:id" element={<RecipePage />} /> {}
+          <Route path="/" element={<HomePage />} /> 
+          <Route path="/recipes/:id" element={<RecipePage />} />{" "}
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -30,6 +26,5 @@ function App() {
   );
 }
 
-// Временный компонент Home будет удален
 
 export default App;

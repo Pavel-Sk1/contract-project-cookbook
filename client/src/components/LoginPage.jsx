@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import "./LoginPage.css";
 
 function LoginPage() {
@@ -17,7 +17,7 @@ function LoginPage() {
 
     try {
       console.log("Attempting to log in with:", { email, password });
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Имитация задержки
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Restore simulated delay
       console.log("Login successful!");
       navigate("/");
     } catch (err) {
