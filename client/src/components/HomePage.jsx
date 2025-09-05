@@ -5,22 +5,6 @@ import axios from "axios";
 import { RecipesService } from "../entities/recipes/RecipeService";
 
 
-const fetchRecipes = async (query = "") => {
-  try {
-    const response = await axios.get(`/api/meals`, { params: { query } }); // Изменено на /api/meals
-    return response.data.map((meal) => ({
-      id: meal.id, // TheMealDB ID
-      title: meal.title, // Название блюда
-      img_url: meal.image, // Изображение
-      cooking_time: meal.cooking_time, // Теперь может быть null, если не получено
-      quantity_ingredient: meal.quantity_ingredient, // Теперь может быть null, если не получено
-    }));
-  } catch (error) {
-    console.error("Error fetching recipes from API:", error);
-    throw error;
-  }
-};
-
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,19 +28,7 @@ function HomePage() {
     }
   }
 
-  useEffect(() => {
-    // const loadRecipes = async () => {
-    //   setLoading(true);
-    //   try {
-    //     const data = await fetchRecipes();
-    //     setRecipes(data);
-    //   } catch (err) {
-    //     setError("Не удалось загрузить рецепты.");
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-    // loadRecipes();
+  useEffect(() => {   
     getAllRecipeHandler()    
   }, []);
 

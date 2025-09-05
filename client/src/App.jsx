@@ -7,8 +7,13 @@ import RegistrationPage from "./components/RegistrationPage";
 import LoginPage from "./components/LoginPage";
 
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  // const [user, setUser] = useState(null)
+
+
+
   return (
     <Router>
       <Header />
