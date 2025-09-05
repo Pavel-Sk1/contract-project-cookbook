@@ -5,7 +5,7 @@ import axios from "axios";
 import { RecipesService } from "../entities/recipes/RecipeService";
 
 
-function HomePage() {
+function HomePage({user}) {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -103,7 +103,7 @@ function HomePage() {
 
       <div className="recipe-grid">
         {sortedRecipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+          <RecipeCard key={recipe.id} recipe={recipe} user={user}/>
         ))}
       </div>
     </div>

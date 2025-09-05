@@ -12,7 +12,7 @@ import { UserService } from "./entities/user/UserService";
 import { setAccessToken } from "./shared/lib/axiosInstance";
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState()
 
   const fetchUser = async () => {
     try {
@@ -31,8 +31,7 @@ function App() {
     }
   };
   useEffect(() => {
-    fetchUser();
-    console.log(user)
+    fetchUser();    
   }, []);
 
 
@@ -41,9 +40,9 @@ function App() {
       <Header user={user} setUser={setUser}/>
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} /> {}
+          <Route path="/" element={<HomePage user={user}/>} /> {}
           <Route path="/recipes/:id" element={<RecipePage />} /> {}
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/favorites" element={<FavoritesPage user={user}/>} />
           <Route path="/register" element={<RegistrationPage setUser={setUser}/>} />
           <Route path="/login" element={<LoginPage setUser={setUser}/>} />
         </Routes>

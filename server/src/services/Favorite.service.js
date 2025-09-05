@@ -10,11 +10,14 @@ class FavoriteService {
   }
 
   static async getByUser(userId) {
-    return Favorite.findAll({
+     const dataDb = await Favorite.findAll({
       where: { userId },
-      include: [{ model: Recipe, attributes: ['id', 'title', 'img_url'] }],
+      include: [{ model: Recipe, attributes: ['id', 'title', 'img_url', 'cooking_time', 'quantity_ingredient'] }],
       order: [['createdAt', 'DESC']],
+      raw: true
     });
+    // const result = dataDb.get({plain: true})
+    return dataDb 
   }
 
   static async add(userId, recipeId) {
