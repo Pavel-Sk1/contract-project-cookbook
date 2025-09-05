@@ -1,14 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { setAccessToken } from "../shared/lib/axiosInstance";
+import { useNavigate } from "react-router-dom";
+import { UserService } from "../entities/user/UserService";
 
-function Header() {
-  const [userMenuOpen, setUserMenuOpen] = useState(false); // Состояние для выпадающего меню пользователя
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Возвращаем локальное состояние
+function Header({user, setUser}) {
+  const [userMenuOpen, setUserMenuOpen] = useState(false); // Состояние для выпадающего меню пользователя  
+  const navigate = useNavigate();
 
   const toggleUserMenu = () => {
     setUserMenuOpen(!userMenuOpen);
   };
+  
+  const handleSignOut = async () => {
+    try {
+      const response = await UserService.signOut();
+      if (response.statusCode === 200) {
+        setUser(null);
+        setAccessToken('');
+        navigate('/');
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <header className="header">
@@ -30,11 +48,11 @@ function Header() {
 
           <div className="user-menu">
             <button className="user-menu-toggle" onClick={toggleUserMenu}>
-              {isLoggedIn ? "Профиль" : "Войти/Рег."} {}
+              {user ? "Профиль" : "Войти/Рег."} {}
               <span className="dropdown-arrow">▼</span>
             </button>
             <ul className={`user-dropdown-menu ${userMenuOpen ? "open" : ""}`}>
-              {isLoggedIn ? (
+              {user ? (
                 <>
                   <li>
                     <Link to="/favorites" onClick={toggleUserMenu}>
@@ -43,9 +61,9 @@ function Header() {
                   </li>
                   <li>
                     <button
-                      onClick={() => {
-                        setIsLoggedIn(false);
+                      onClick={() => {                        
                         toggleUserMenu();
+                        handleSignOut();
                       }}
                     >
                       Выйти
