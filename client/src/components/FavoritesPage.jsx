@@ -1,32 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FavoritesPage.css";
+import { FavoriteService } from "../entities/favorites/FavoriteService";
 
-const mockRecipes = [
-  {
-    id: 1,
-    title: "Вкусный Куриный Суп",
-    img_url: "https://via.placeholder.com/150x100.png?text=Куриный+Суп",
-    cookingTime: 45, // минуты
-    ingredientsCount: 7,
-  },
-  {
-    id: 2,
-    title: "Салат Цезарь",
-    img_url: "https://via.placeholder.com/150x100.png?text=Салат+Цезарь",
-    cookingTime: 20,
-    ingredientsCount: 6,
-  },
-  {
-    id: 3,
-    title: "Паста Карбонара",
-    img_url: "https://via.placeholder.com/150x100.png?text=Паста+Карбонара",
-    cookingTime: 30,
-    ingredientsCount: 5,
-  },
-];
+// const mockRecipes = [
+//   {
+//     id: 1,
+//     title: "Вкусный Куриный Суп",
+//     img_url: "https://via.placeholder.com/150x100.png?text=Куриный+Суп",
+//     cookingTime: 45, // минуты
+//     ingredientsCount: 7,
+//   },
+//   {
+//     id: 2,
+//     title: "Салат Цезарь",
+//     img_url: "https://via.placeholder.com/150x100.png?text=Салат+Цезарь",
+//     cookingTime: 20,
+//     ingredientsCount: 6,
+//   },
+//   {
+//     id: 3,
+//     title: "Паста Карбонара",
+//     img_url: "https://via.placeholder.com/150x100.png?text=Паста+Карбонара",
+//     cookingTime: 30,
+//     ingredientsCount: 5,
+//   },
+// ];
 
-function FavoritesPage() {
-  const [recipes, setRecipes] = useState(mockRecipes);
+function FavoritesPage({user}) {
+  const [recipes, setRecipes] = useState([]);
   const [sortBy, setSortBy] = useState("none");
 
   const sortRecipes = (criteria) => {
@@ -39,6 +40,23 @@ function FavoritesPage() {
     setRecipes(sorted);
     setSortBy(criteria);
   };
+
+  const getFavoriteRecipes = async () => {
+    try {
+      console.log(user)
+      console.log(user)
+      const result = await FavoriteService.getByUserId(user?.id)
+      console.log(result)
+      setRecipes(result)
+
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getFavoriteRecipes()
+  },[])
 
   return (
     <div className="favorites-page-container">

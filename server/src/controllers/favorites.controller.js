@@ -41,7 +41,7 @@ class FavoriteController {
       }
 
       const favorites = await FavoriteService.getByUser(+userId);
-
+      console.log(favorites)
       return res
         .status(200)
         .json(formatResponse(200, 'успешно получены данные', favorites));
@@ -111,7 +111,7 @@ class FavoriteController {
 
       return res
         .status(200)
-        .json(formatResponse(200, 'рецепт удалён из избранного'));
+        .json(formatResponse(200, 'рецепт удалён из избранного', deleted));
     } catch ({ message }) {
       console.error('======FavoriteController.delete===\r\n', message)
       return res
