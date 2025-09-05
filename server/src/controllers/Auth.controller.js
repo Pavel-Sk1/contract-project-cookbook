@@ -141,23 +141,23 @@ class AuthController {
           );
       }
 
-      // const isPasswordValid = await bcrypt.compare(
-      //   password,
-      //   userFound.password
-      // );
+      const isPasswordValid = await bcrypt.compare(
+        password,
+        userFound.password
+      );
 
-      // if (!isPasswordValid) {
-      //   return res
-      //     .status(401)
-      //     .json(
-      //       formatResponse(
-      //         401,
-      //         `Неверный пароль для пользователя с email (${email})`,
-      //         null,
-      //         `Неверный пароль для пользователя с email (${email})`
-      //       )
-      //     );
-      // }
+      if (!isPasswordValid) {
+        return res
+          .status(401)
+          .json(
+            formatResponse(
+              401,
+              `Неверный пароль для пользователя с email (${email})`,
+              null,
+              `Неверный пароль для пользователя с email (${email})`
+            )
+          );
+      }
 
       delete userFound.password;
 
