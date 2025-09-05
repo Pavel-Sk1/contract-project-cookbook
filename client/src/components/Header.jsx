@@ -24,7 +24,7 @@ function Header() {
         <nav className="main-nav">
           <ul className="nav-menu-primary">
             <li>
-              <Link to="/recipes">Рецепты</Link>
+              <Link to="/">Рецепты</Link>
             </li>
           </ul>
 

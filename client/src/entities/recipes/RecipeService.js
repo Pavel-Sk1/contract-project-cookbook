@@ -1,4 +1,4 @@
-import { axiosInstance } from '../../components/shared/lib/axiosInstance';
+import { axiosInstance } from '../../shared/lib/axiosInstance';
 
 export class RecipesService {
   static async getAll() {
